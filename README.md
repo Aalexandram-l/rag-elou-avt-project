@@ -34,7 +34,7 @@
 ├── src/
 │   ├── chunking.py         # Скрипт структурного чанкинга
 │   ├── text_utils.py       # Утилиты (токенизация, стемминг, словарь)
-│   └── retrieval_engines.py# Классы поиска (BM25Retriever, DenseRetriever)
+│   └── retrieval.py# Классы поиска (BM25Retriever, DenseRetriever)
 ├── tests/
 │   └── test_search.py      # Скрипт для тестирования поисковиков
 ├── requirements.txt        # Зависимости (langchain, sentence-transformers, faiss, tf-keras и др.)
