@@ -1,2 +1,7 @@
 langchain-text-splitters
 snowballstemmer
+rank_bm25
+sentence-transformers
+faiss-cpu
+scikit-learn
+tf-keras
