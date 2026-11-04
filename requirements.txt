@@ -1,3 +1,6 @@
+--extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+--extra-index-url https://pypi.org/simple
+
 langchain-text-splitters
 snowballstemmer
 rank_bm25
@@ -5,3 +8,4 @@ sentence-transformers
 faiss-cpu
 scikit-learn
 tf-keras
+llama-cpp-python

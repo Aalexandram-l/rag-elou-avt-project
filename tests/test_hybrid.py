@@ -34,7 +34,6 @@ if __name__ == "__main__":
     query = "При какой температуре отбирается керосиновая фракция на атмосферной колонне?"
     print(f"Запрос: {query}\n")
 
-    # --- ПОДБОР ВЕСА (перебираем alpha от 0.1 до 0.9) ---
     print("=== Подбор веса (Weighted) ===")
     for alpha in [0.1, 0.3, 0.5, 0.7, 0.9]:
         hybrid = HybridRetriever(bm25, dense, alpha=alpha, fusion="weighted")
@@ -42,7 +41,6 @@ if __name__ == "__main__":
         top_idx, top_score = results[0]
         print(f"alpha={alpha:.1f} | Топ-1: {chunks[top_idx]['id']} (Score: {top_score:.3f})")
 
-    # --- ПЕРЕРАНЖИРОВАНИЕ (RRF) ---
     print("\n=== Переранжирование (RRF) ===")
     hybrid_rrf = HybridRetriever(bm25, dense, fusion="rrf")
     for rank, (idx, score) in enumerate(hybrid_rrf.search(query, k=3), 1):

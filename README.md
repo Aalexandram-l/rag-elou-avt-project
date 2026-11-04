@@ -11,7 +11,7 @@
 - [x] **Этап 3:** Чанкинг корпуса по структуре (получено 214 чанков).
 - [x] **Этап 4:** Построение векторного индекса и реализация поиска BM25.
 - [x] **Этап 5:** Гибридный поиск и переранжирование.
-- [ ] **Этап 6:** Генерация ответов через LLM.
+- [x] **Этап 6:** Генерация ответов через LLM.
 - [ ] **Этап 7:** Оценка качества (Recall@5, MRR).
 - [ ] **Этап 8:** Разработка веб-интерфейса (Gradio/Streamlit).
 - [ ] **Этап 9:** Написание пояснительной записки.
@@ -30,17 +30,21 @@
 │   ├── corpus_plan.md      # План корпуса и структура регламента
 │   ├── sources.md          # Реестр открытых источников
 │   ├── chunking_report.md  # Отчет по нарезке (чанкингу)
-│   ├── search_report.md    # Отчет по реализации поиска (BM25, Dense)
-│   └── hybrid_report.md    # Отчет по гибридному поиску и переранжированию
+│   ├── search_report.md    # Отчет по поиску (BM25, Dense)
+│   ├── hybrid_report.md    # Отчет по гибридному поиску
+│   └── generation_report.md# Отчет по генерации ответов (LLM)
+├── models/                 # Сюда скачивается GGUF-модель (добавлено в .gitignore)
 ├── src/
 │   ├── chunking.py         # Скрипт структурного чанкинга
 │   ├── text_utils.py       # Утилиты (токенизация, стемминг, словарь)
-│   ├── retrieval.py        # Классы поиска (BM25Retriever, DenseRetriever)
-│   └── hybrid_retrieval.py # Класс гибридного поиска (Weighted, RRF, CrossEncoder)
+│   ├── retrieval.py        # Классы поиска (BM25, Dense)
+│   ├── hybrid_retrieval.py # Гибридный поиск (Weighted, RRF, CrossEncoder)
+│   ├── pipeline.py         # Сборка поискового пайплайна
+│   └── generate.py         # Генерация ответов через LLM (RAG)
 ├── tests/
 │   ├── test_search.py      # Тестирование BM25 и Dense
 │   └── test_hybrid.py      # Тестирование гибридного поиска
-├── requirements.txt        # Зависимости (sentence-transformers, faiss, tf-keras и др.)
+├── requirements.txt        # Зависимости
 └── README.md               # Описание проекта и статус
 ```
 
@@ -76,3 +80,4 @@
 | [**Отчет по чанкингу (`chunking_report.md`)**](docs/chunking_report.md) | Параметры нарезки, результаты (214 чанков) и пример полученного чанка в JSON. |
 | [**Отчет по поиску (`search_report.md`)**](docs/search_report.md) | Реализация BM25 и Dense поиска (FAISS), результаты первого прогона. |
 | [**Отчет по гибридному поиску (`hybrid_report.md`)**](docs/hybrid_report.md) | Гибридный поиск (Weighted, RRF), подбор веса и переранжирование (CrossEncoder). |
+| [**Отчет по генерации (`generation_report.md`)**](docs/generation_report.md) | Подключение LLM, промпт-инжиниринг и сравнение режимов. |
