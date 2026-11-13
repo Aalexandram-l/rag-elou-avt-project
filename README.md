@@ -12,7 +12,7 @@
 - [x] **Этап 4:** Построение векторного индекса и реализация поиска BM25.
 - [x] **Этап 5:** Гибридный поиск и переранжирование.
 - [x] **Этап 6:** Генерация ответов через LLM.
-- [ ] **Этап 7:** Оценка качества (Recall@5, MRR).
+- [x] **Этап 7:** Оценка качества (Recall@5, MRR).
 - [ ] **Этап 8:** Разработка веб-интерфейса (Gradio/Streamlit).
 - [ ] **Этап 9:** Написание пояснительной записки.
 - [ ] **Этап 10:** Подготовка презентации и защита.
@@ -25,22 +25,30 @@
 │   ├── corpus/             # 14 документов корпуса в формате Markdown
 │   ├── chunks.jsonl        # Результат чанкинга (214 чанков)
 │   ├── sections.json       # Иерархия разделов корпуса
-│   └── glossary.json       # Словарь синонимов и аббревиатур
+│   ├── glossary.json       # Словарь синонимов и аббревиатур
+│   └── queries.json        # Размеченный набор из 25 тестовых запросов
 ├── docs/
 │   ├── corpus_plan.md      # План корпуса и структура регламента
 │   ├── sources.md          # Реестр открытых источников
 │   ├── chunking_report.md  # Отчет по нарезке (чанкингу)
 │   ├── search_report.md    # Отчет по поиску (BM25, Dense)
 │   ├── hybrid_report.md    # Отчет по гибридному поиску
-│   └── generation_report.md# Отчет по генерации ответов (LLM)
+│   ├── generation_report.md# Отчет по генерации ответов (LLM)
+│   └── metrics_report.md   # Отчет по метрикам (Recall@5, MRR, Accuracy)
 ├── models/                 # Сюда скачивается GGUF-модель (добавлено в .gitignore)
+├── results/                # Результаты оценки (создается автоматически)
+│   ├── metrics_search.md   # Таблица метрик поиска
+│   ├── metrics_generation.md # Таблица метрик генерации
+│   └── per_query.csv       # Детальные результаты по каждому вопросу
 ├── src/
 │   ├── chunking.py         # Скрипт структурного чанкинга
 │   ├── text_utils.py       # Утилиты (токенизация, стемминг, словарь)
 │   ├── retrieval.py        # Классы поиска (BM25, Dense)
 │   ├── hybrid_retrieval.py # Гибридный поиск (Weighted, RRF, CrossEncoder)
 │   ├── pipeline.py         # Сборка поискового пайплайна
-│   └── generate.py         # Генерация ответов через LLM (RAG)
+│   ├── generate.py         # Генерация ответов через LLM (RAG)
+│   ├── metrics_search.py   # Скрипт оценки поиска (Recall@5, MRR)
+│   └── metrics_generation.py # Скрипт оценки генерации (Accuracy, Hallucination)
 ├── tests/
 │   ├── test_search.py      # Тестирование BM25 и Dense
 │   └── test_hybrid.py      # Тестирование гибридного поиска
@@ -81,3 +89,4 @@
 | [**Отчет по поиску (`search_report.md`)**](docs/search_report.md) | Реализация BM25 и Dense поиска (FAISS), результаты первого прогона. |
 | [**Отчет по гибридному поиску (`hybrid_report.md`)**](docs/hybrid_report.md) | Гибридный поиск (Weighted, RRF), подбор веса и переранжирование (CrossEncoder). |
 | [**Отчет по генерации (`generation_report.md`)**](docs/generation_report.md) | Подключение LLM, промпт-инжиниринг и сравнение режимов. |
+| [**Отчет по метрикам (`metrics_report.md`)**](docs/metrics_report.md) | Оценка поиска (Recall@5=0.91, MRR=0.68) и генерации (Accuracy=96%, Hallucination=0%). |

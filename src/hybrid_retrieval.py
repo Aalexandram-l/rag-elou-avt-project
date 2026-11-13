@@ -1,4 +1,4 @@
-﻿import numpy as np
+import numpy as np
 
 def _minmax(x: np.ndarray) -> np.ndarray:
     lo, hi = x.min(), x.max()
@@ -11,7 +11,7 @@ def _ranks(x: np.ndarray) -> np.ndarray:
     return r
 
 class HybridRetriever:
-    def __init__(self, bm25, dense, alpha=0.5, fusion="weighted", rrf_k=60, use_rerank=True):
+    def __init__(self, bm25, dense, alpha=0.9, fusion="weighted", rrf_k=60, use_rerank=True):
         self.bm25, self.dense = bm25, dense
         self.chunks = bm25.chunks
         self.alpha, self.fusion, self.rrf_k = alpha, fusion, rrf_k
@@ -34,11 +34,29 @@ class HybridRetriever:
 
     def search(self, query: str, k: int = 5):
         s = self.scores(query)
-        top_idx = np.argsort(-s)[:20]
+        top_idx = np.argsort(-s)[:10]
         
         if self.use_rerank and hasattr(self, 'reranker'):
             pairs = [[query, self.chunks[i]["index_text"]] for i in top_idx]
             rerank_scores = self.reranker.predict(pairs)
+
+            for idx, i in enumerate(top_idx):
+                if self.chunks[i].get("type") == "table":
+                    rerank_scores[idx] += 0.5
+
+            import re
+            if re.search(r'\d', query):
+                for idx, i in enumerate(top_idx):
+                    if re.search(r'\d', self.chunks[i]["text"]):
+                        rerank_scores[idx] += 0.1
+            
+
+            query_words = set(query.lower().split())
+            for idx, i in enumerate(top_idx):
+                chunk_words = set(self.chunks[i]["text"].lower().split())
+                overlap = len(query_words & chunk_words)
+                if overlap > 0:
+                    rerank_scores[idx] += 0.02 * overlap
             sorted_idx = np.argsort(-rerank_scores)[:k]
             return [(int(top_idx[i]), float(rerank_scores[i])) for i in sorted_idx]
         

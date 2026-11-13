@@ -24,7 +24,7 @@ def load_chunks(path: Path = ROOT / "data" / "chunks.jsonl"):
     return load_jsonl(path)
 
 
-def build_retrievers(chunks=None, backend="auto", model=DEFAULT_MODEL, alpha=0.5, fusion="weighted", use_rerank=True):
+def build_retrievers(chunks=None, backend="auto", model=DEFAULT_MODEL, alpha=0.9, fusion="weighted", use_rerank=True):
     chunks = chunks or load_chunks()
     bm25 = BM25Retriever(chunks)
     dense = DenseRetriever(chunks, backend=backend, model_name=model)

@@ -5,7 +5,7 @@ import numpy as np
 from text_utils import tokenize
 
 ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_MODEL = "cointegrated/rubert-tiny2"
+DEFAULT_MODEL = "intfloat/multilingual-e5-small"
 
 try:
     from rank_bm25 import BM25Okapi as _BM25

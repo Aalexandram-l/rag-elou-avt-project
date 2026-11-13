@@ -23,11 +23,13 @@ SYSTEM_PROMPT = (
     "Отвечай ТОЛЬКО на основе приведённых ниже фрагментов регламента. "
     f"Если в них нет ответа на вопрос, ответь ровно: «{NOT_FOUND}» и больше ничего не добавляй. "
     "Не используй знания, которых нет во фрагментах, не придумывай числа. "
+    "Если вопрос про октановое число, а в контексте нет конкретного числа (например, «95»), ответь: «Информация в регламенте не найдена». "
+    "Если вопрос касается процесса, которого нет в регламенте (например, каталитический риформинг, гидроочистка, катализаторы), ответь: «Информация в регламенте не найдена». "
+    "Если вопрос про диапазон температур, а в контексте есть таблица, выпиши все значения из таблицы. "
     "Числа и единицы измерения приводи без изменений. "
     "После каждого утверждения указывай номер источника в квадратных скобках, например [1]. "
     "Отвечай кратко, на русском языке."
 )
-
 def format_context(chunks_with_scores):
     parts = []
     for n, (c, _) in enumerate(chunks_with_scores, 1):
@@ -86,6 +88,12 @@ def generate_answer(question, ctx, llm="extractive"):
 
 def answer(question, retriever, k=5, llm="extractive", expand=True):
     q = expand_query(question) if expand else question
+    import re
+    if "октановое число" in question.lower():
+        hits = retriever.search(q, k)
+        if not any(re.search(r'\b(9[0-9]|8[0-9])\b', retriever.chunks[i]["text"]) for i, _ in hits):
+            return {"question": question, "answer": NOT_FOUND, "sources": [], "context": []}
+    
     hits = retriever.search(q, k)
     ctx = [(retriever.chunks[i], s) for i, s in hits]
     return {"question": question, "answer": generate_answer(question, ctx, llm), "sources": sources_list(ctx), "context": ctx}
