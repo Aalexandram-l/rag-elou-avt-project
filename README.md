@@ -89,4 +89,4 @@
 | [**Отчет по поиску (`search_report.md`)**](docs/search_report.md) | Реализация BM25 и Dense поиска (FAISS), результаты первого прогона. |
 | [**Отчет по гибридному поиску (`hybrid_report.md`)**](docs/hybrid_report.md) | Гибридный поиск (Weighted, RRF), подбор веса и переранжирование (CrossEncoder). |
 | [**Отчет по генерации (`generation_report.md`)**](docs/generation_report.md) | Подключение LLM, промпт-инжиниринг и сравнение режимов. |
-| [**Отчет по метрикам (`metrics_report.md`)**](docs/metrics_report.md) | Оценка поиска (Recall@5=0.91, MRR=0.68) и генерации (Accuracy=96%, Hallucination=0%). |
+| [**Отчет по метрикам (`metrics_report.md`)**](docs/metrics_report.md) | Оценка поиска (Recall@5=0.91, MRR=0.65) и генерации (Accuracy=96%, Hallucination=0%). |
