@@ -1,6 +1,7 @@
 ﻿import os
 import logging
 import warnings
+from huggingface_hub import hf_hub_download
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
@@ -67,8 +68,21 @@ def _llama_cpp(prompt):
     global _llama_llm
     if _llama_llm is None:
         from llama_cpp import Llama
-        model_path = os.getenv("LLAMA_MODEL_PATH", "models/qwen2.5-1.5b-instruct-q4_k_m.gguf")
-        print(f"Загрузка GGUF модели из {model_path}...")
+        
+        REPO_ID = "bartowski/Qwen2.5-1.5B-Instruct-GGUF"
+        FILENAME = "Qwen2.5-1.5B-Instruct-Q4_K_M.gguf"
+        
+        model_path = os.getenv("LLAMA_MODEL_PATH")
+        
+        if not model_path or not os.path.exists(model_path):
+            print(f"Модель не найдена локально. Скачивание {FILENAME} из Hugging Face...")
+            model_path = hf_hub_download(
+                repo_id=REPO_ID,
+                filename=FILENAME
+            )
+        else:
+            print(f"Загрузка GGUF модели локально из {model_path}...")
+            
         _llama_llm = Llama(model_path=model_path, n_ctx=4096, n_threads=4, verbose=False)
     
     messages = [

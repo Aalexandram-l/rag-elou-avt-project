@@ -13,7 +13,7 @@
 - [x] **Этап 5:** Гибридный поиск и переранжирование.
 - [x] **Этап 6:** Генерация ответов через LLM.
 - [x] **Этап 7:** Оценка качества (Recall@5, MRR).
-- [ ] **Этап 8:** Разработка веб-интерфейса (Gradio/Streamlit).
+- [x] **Этап 8:** Разработка веб-интерфейса (Gradio/Streamlit).
 - [ ] **Этап 9:** Написание пояснительной записки.
 - [ ] **Этап 10:** Подготовка презентации и защита.
 
@@ -21,8 +21,11 @@
 
 ```text
 .
+├── .streamlit/
+│   └── config.toml         # Настройки цветовой темы интерфейса
 ├── data/
 │   ├── corpus/             # 14 документов корпуса в формате Markdown
+│   ├── barrel.svg          # Векторная иконка установки для интерфейса
 │   ├── chunks.jsonl        # Результат чанкинга (214 чанков)
 │   ├── sections.json       # Иерархия разделов корпуса
 │   ├── glossary.json       # Словарь синонимов и аббревиатур
@@ -34,7 +37,8 @@
 │   ├── search_report.md    # Отчет по поиску (BM25, Dense)
 │   ├── hybrid_report.md    # Отчет по гибридному поиску
 │   ├── generation_report.md# Отчет по генерации ответов (LLM)
-│   └── metrics_report.md   # Отчет по метрикам (Recall@5, MRR, Accuracy)
+│   ├── metrics_report.md   # Отчет по метрикам (Recall@5, MRR, Accuracy)
+│   └── interface_report.md # Отчет по веб-интерфейсу (Streamlit)
 ├── models/                 # Сюда скачивается GGUF-модель (добавлено в .gitignore)
 ├── results/                # Результаты оценки (создается автоматически)
 │   ├── metrics_search.md   # Таблица метрик поиска
@@ -52,6 +56,7 @@
 ├── tests/
 │   ├── test_search.py      # Тестирование BM25 и Dense
 │   └── test_hybrid.py      # Тестирование гибридного поиска
+├── streamlit_app.py        # Основной файл веб-интерфейса
 ├── requirements.txt        # Зависимости
 └── README.md               # Описание проекта и статус
 ```
@@ -90,3 +95,4 @@
 | [**Отчет по гибридному поиску (`hybrid_report.md`)**](docs/hybrid_report.md) | Гибридный поиск (Weighted, RRF), подбор веса и переранжирование (CrossEncoder). |
 | [**Отчет по генерации (`generation_report.md`)**](docs/generation_report.md) | Подключение LLM, промпт-инжиниринг и сравнение режимов. |
 | [**Отчет по метрикам (`metrics_report.md`)**](docs/metrics_report.md) | Оценка поиска (Recall@5=0.91, MRR=0.65) и генерации (Accuracy=96%, Hallucination=0%). |
+| [**Отчет по интерфейсу (`interface_report.md`)**](docs/interface_report.md) | Реализация веб-интерфейса (Streamlit), настройка темы и инструкция по локальному запуску. |
