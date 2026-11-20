@@ -31,6 +31,11 @@
 │   ├── glossary.json       # Словарь синонимов и аббревиатур
 │   └── queries.json        # Размеченный набор из 25 тестовых запросов
 ├── docs/
+│   ├── images/
+│   │   ├── 01_main_page.png
+│   │   ├── 02_llama_answer.png
+│   │   ├── 03_extractive_answer.png
+│   │   └── 04_wronge_sources.png
 │   ├── corpus_plan.md      # План корпуса и структура регламента
 │   ├── sources.md          # Реестр открытых источников
 │   ├── chunking_report.md  # Отчет по нарезке (чанкингу)
@@ -38,7 +43,8 @@
 │   ├── hybrid_report.md    # Отчет по гибридному поиску
 │   ├── generation_report.md# Отчет по генерации ответов (LLM)
 │   ├── metrics_report.md   # Отчет по метрикам (Recall@5, MRR, Accuracy)
-│   └── interface_report.md # Отчет по веб-интерфейсу (Streamlit)
+│   ├── interface_report.md # Отчет по веб-интерфейсу (Streamlit)
+│   └── deployment_and_rag_report.md
 ├── models/                 # Сюда скачивается GGUF-модель (добавлено в .gitignore)
 ├── results/                # Результаты оценки (создается автоматически)
 │   ├── metrics_search.md   # Таблица метрик поиска
@@ -96,3 +102,4 @@
 | [**Отчет по генерации (`generation_report.md`)**](docs/generation_report.md) | Подключение LLM, промпт-инжиниринг и сравнение режимов. |
 | [**Отчет по метрикам (`metrics_report.md`)**](docs/metrics_report.md) | Оценка поиска (Recall@5=0.91, MRR=0.65) и генерации (Accuracy=96%, Hallucination=0%). |
 | [**Отчет по интерфейсу (`interface_report.md`)**](docs/interface_report.md) | Реализация веб-интерфейса (Streamlit), настройка темы и инструкция по локальному запуску. |
+| [**Отчет по развертыванию (`deployment_and_rag_report.md`)**](docs/deployment_and_rag_report.md) | Развертывание на Streamlit Community Cloud, демонстрация работы приложения, ограничения облачной среды, сравнение методов генерации и перспектива перехода на API-модели. |
