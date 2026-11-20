@@ -157,7 +157,7 @@ retrievers = load_retrievers()
 with st.sidebar:
     st.markdown("### Параметры поиска")
     retriever_name = st.selectbox("Метод поиска", ["hybrid", "bm25", "dense"], index=0)
-    llm_name = st.selectbox("Метод генерации", ["extractive", "llama"], index=1)
+    llm_name = st.selectbox("Метод генерации", ["extractive", "groq"], index=1)
     
     k = 10
     
@@ -182,7 +182,7 @@ question = st.text_input("Введите вопрос по регламенту:
 
 if question:
     with st.spinner("Поиск ответа..."):
-        res = answer(question, retrievers[retriever_name], k, llm_name, expand)
+        res = answer(question, retrievers[retriever_name], k=k, llm=llm_name, expand=expand)
     
     st.markdown(f'''
     <div class="answer-box">

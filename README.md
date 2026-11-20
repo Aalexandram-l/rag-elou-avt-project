@@ -17,6 +17,10 @@
 - [ ] **Этап 9:** Написание пояснительной записки.
 - [ ] **Этап 10:** Подготовка презентации и защита.
 
+## Веб-приложение
+
+ [ЭЛОУ-АВТ на Streamlit](https://твой-проект.streamlit.app/)
+
 ## Структура репозитория
 
 ```text
@@ -43,8 +47,9 @@
 │   ├── hybrid_report.md    # Отчет по гибридному поиску
 │   ├── generation_report.md# Отчет по генерации ответов (LLM)
 │   ├── metrics_report.md   # Отчет по метрикам (Recall@5, MRR, Accuracy)
-│   ├── interface_report.md # Отчет по веб-интерфейсу (Streamlit)
-│   └── deployment_and_rag_report.md
+│   ├── interface_report.md             # Отчет по веб-интерфейсу (Streamlit)
+│   ├── deployment_and_rag_report.md    # Отчет по развертыванию и RAG
+│   └── groq_api_integration_report.md  # Отчет по интеграции и тестированию Groq API
 ├── models/                 # Сюда скачивается GGUF-модель (добавлено в .gitignore)
 ├── results/                # Результаты оценки (создается автоматически)
 │   ├── metrics_search.md   # Таблица метрик поиска
@@ -64,6 +69,7 @@
 │   └── test_hybrid.py      # Тестирование гибридного поиска
 ├── streamlit_app.py        # Основной файл веб-интерфейса
 ├── requirements.txt        # Зависимости
+├── requirements-local.txt
 └── README.md               # Описание проекта и статус
 ```
 
@@ -103,3 +109,4 @@
 | [**Отчет по метрикам (`metrics_report.md`)**](docs/metrics_report.md) | Оценка поиска (Recall@5=0.91, MRR=0.65) и генерации (Accuracy=96%, Hallucination=0%). |
 | [**Отчет по интерфейсу (`interface_report.md`)**](docs/interface_report.md) | Реализация веб-интерфейса (Streamlit), настройка темы и инструкция по локальному запуску. |
 | [**Отчет по развертыванию (`deployment_and_rag_report.md`)**](docs/deployment_and_rag_report.md) | Развертывание на Streamlit Community Cloud, демонстрация работы приложения, ограничения облачной среды, сравнение методов генерации и перспектива перехода на API-модели. |
+| [**Отчет по интеграции Groq API (`groq_api_integration_report.md`)**](docs/groq_api_integration_report.md) | Подключение Groq API для генерации ответов, настройка доступа по API-ключу, тестирование работы модели и оценка качества генерации на контрольном наборе вопросов. |

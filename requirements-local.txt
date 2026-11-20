@@ -1,0 +1,7 @@
+-r requirements.txt
+
+tf-keras
+llama-cpp-python
+python-dotenv
+
+--extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu

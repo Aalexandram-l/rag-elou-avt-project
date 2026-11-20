@@ -1,7 +1,29 @@
-﻿__pycache__/
-*.pyc
-*.npy
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
 .venv/
+venv/
+
+# Environment variables and secrets
 .env
-.DS_Store
+.env.*
+!.env.example
+
+# Models and generated data
 models/
+*.npy
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+.pytest_cache/
