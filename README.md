@@ -19,7 +19,7 @@
 
 ## Веб-приложение
 
- [ЭЛОУ-АВТ на Streamlit](https://твой-проект.streamlit.app/)
+ [ЭЛОУ-АВТ на Streamlit](https://rag-elou-avt-project-nm7pjk2z77xpvdhkbuyifd.streamlit.app/)
 
 ## Структура репозитория
 
